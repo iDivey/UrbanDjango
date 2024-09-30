@@ -1,0 +1,16 @@
+{% extends "fourth_task/menu.html" %}
+
+{% block pagename %} <h1>Литературные источники</h1> {% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for book in book_type %}
+            <li>{{ book }}  <button>Приобрести</button></li>
+        {% endfor %}
+    </ul>
+    <button><a href="/main">Главная страница</a></button>
+{% endblock %}
