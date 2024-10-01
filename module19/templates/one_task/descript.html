@@ -1,0 +1,15 @@
+{% extends "one_task/menu.html" %}
+
+{% block pagename %} <h1>Описание товаров</h1> {% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% for game in game_type %}
+        <h3>{{ game.title }}</h3>
+        <ul>{{ game.description }}</ul>
+    {% endfor %}
+
+{% endblock %}
