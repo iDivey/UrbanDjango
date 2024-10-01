@@ -1,0 +1,10 @@
+from task1.models import Buyer, Game
+Buyer.objects.create(name='Vasya', balance='2500.25', age='25')
+Buyer.objects.create(name='Vanechka2016', balance='50.7', age='8')
+Buyer.objects.create(name='PedroCool', balance='50000.000', age='45')
+Game.objects.create(title='GTA',cost='1500', size='50.80', description='Begit, strelyat, ubivat', age_limited='1')
+Game.objects.create(title='Tetris',cost='50', size='0.50', description='Skladivay kubiki raduysa jizni', age_limited='0')
+Game.objects.create(title='Assassin`s creed: Blood',cost='5500', size='120.30', description='Kapyoshon v sene', age_limited='1')
+Game.objects.get(id=1).buyer.set((1, 3))
+Game.objects.get(id=2).buyer.set((2, 3))
+Game.objects.get(id=3).buyer.set((3,))
