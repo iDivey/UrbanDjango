@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+    <h1>Список постов</h1>
+
+    <form method="GET" action="">
+        <label for="page_size">Количество постов на странице:</label>
+        <select name="page_size" id="page_size" onchange="this.form.submit()">
+            <option value="4" {% if page_size == 4 %}selected{% endif %}>4</option>
+            <option value="8" {% if page_size == 8 %}selected{% endif %}>8</option>
+            <option value="12" {% if page_size == 12 %}selected{% endif %}>12</option>
+        </select>
+    </form>
+
+    <ul>
+        {% for post in page_posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <p><small>Создано: {{ post.created_at }}</small></p>
+            </li>
+        {% empty %}
+            <p>Нет постов.</p>
+        {% endfor %}
+    </ul>
+    <!-- показываем пагинатор -->
+    <div class="pagination">
+        <span class="step-links">
+            <p>Страницы:</p>
+            <ul>
+                {% if page_posts.has_previous %}
+                    <li><a href="?page=1&page_size={{ page_size }}">В начало</a></li>
+                    <li><a href="?page={{ page_posts.previous_page_number }}&page_size={{ page_size }}">{{ page_posts.previous_page_number }}</a></li>
+                {% endif %}
+                <span class="current">
+                    Страница {{ page_posts.number }} из {{ page_posts.paginator.num_pages }}.
+                </span>
+                {% if page_posts.has_next %}
+                    <li><a href="?page={{ page_posts.next_page_number }}&page_size={{ page_size }}">{{ page_posts.next_page_number }}</a></li>
+                    <li><a href="?page={{ page_posts.paginator.num_pages }}&page_size={{ page_size }}">В конец</a></li>
+                {% endif %}
+            </ul>
+        </span>
+    </div>
+
+</body>
+</html>
