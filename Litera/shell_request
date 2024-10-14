@@ -1,0 +1,16 @@
+>>> from book.models import Book
+>>> from book.models import Conf
+>>> from book.models import Journal
+>>> from book.models import Users
+>>> Book.objects.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>]>
+>>> Conf.objects.get(id=1)
+<Conf: Conf object (1)>
+>>> Users.objects.create(Username='iDivey', UserPasword='12345678')
+<Users: Users object (1)>
+>>> Book.objects.count()
+2
+>>> author_name = 'Дивеев'
+>>> book_count = Book.objects.filter(author=author_name).count()
+>>> print(f'Количество книг автора "{author_name}": {book_count}')
+Количество книг автора "Дивеев": 1
